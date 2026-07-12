@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import Sidebar from "@/app/components/Sidebar";
+import Header from "@/app/components/Header";
 export default function AddUserPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,8 +36,14 @@ export default function AddUserPage() {
 };
 
   return (
-    <>
-      <Navbar />
+  
+     <>
+  <Sidebar />
+
+  <main className="flex-1 ml-72">
+    <Header />
+
+    <div className="p-8"></div>
 
       <div className="p-8">
         <h1 className="text-3xl font-bold mb-6">

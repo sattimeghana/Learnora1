@@ -2,7 +2,8 @@
  "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Sidebar from "@/app/components/Sidebar";
+import Header from "@/app/components/Header";
 
 type User = {
   _id: string;
@@ -29,9 +30,12 @@ export default function DashboardPage() {
 
   if (!topUser) return <div>Loading...</div>;
 
-  return (
-    <>
-      <Navbar />
+ return (
+  <div className="flex min-h-screen bg-gray-100">
+    <Sidebar />
+
+    <main className="flex-1 ml-72">
+      <Header />
 
       <div className="p-8">
         <h1 className="text-4xl font-bold mb-6">
@@ -55,6 +59,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </>
-  );
+    </main>
+  </div>
+);
 }

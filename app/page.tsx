@@ -34,16 +34,26 @@ export default function Home() {
   </li>
 
   <p className="text-gray-400 text-sm mt-8">
-    PRACTICE
-  </p>
+  PRACTICE
+</p>
 
-  <li>
-    <Link href="/practice">💻 Coding Practice</Link>
-  </li>
+<li>
+  <Link href="/practice">
+    💻 Coding Practice
+  </Link>
+</li>
 
-  <li>
-    <Link href="/quiz">❓ Quizzes</Link>
-  </li>
+<li>
+  <Link href="/concept-reinforcement">
+    🧩 Concept Reinforcement
+  </Link>
+</li>
+
+<li>
+  <Link href="/quiz">
+    ❓ Quizzes
+  </Link>
+</li>
 
   <p className="text-gray-400 text-sm mt-8">
     COMMUNITY

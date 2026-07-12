@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Sidebar from "@/app/components/Sidebar";
+import Header from "@/app/components/Header";
 
 type User = {
   _id: string;
@@ -26,10 +27,14 @@ export default function LeaderboardPage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
+  <div className="flex min-h-screen bg-gray-100">
+    <Sidebar />
+
+    <main className="flex-1 ml-72">
+      <Header />
 
       <div className="p-8">
+
         <h1 className="text-3xl font-bold mb-6">
           🏆 Leaderboard
         </h1>
@@ -46,16 +51,18 @@ export default function LeaderboardPage() {
 
           <tbody>
             {users.map((user, index) => (
-              <tr key={user._id} className="border">
-                <td className="p-2">#{index + 1}</td>
+              <tr key={user._id} className="text-center border-b">
+                <td className="p-2">{index + 1}</td>
                 <td className="p-2">{user.name}</td>
                 <td className="p-2">{user.points}</td>
-                <td className="p-2">{user.streak} Days</td>
+                <td className="p-2">🔥 {user.streak}</td>
               </tr>
             ))}
           </tbody>
         </table>
+
       </div>
-    </>
-  );
+    </main>
+  </div>
+);
 }
