@@ -43,7 +43,7 @@ export default function Sidebar() {
 
           <li>
             <Link
-              href="/"
+              href="/dashboard"
               className={`flex items-center gap-3 p-3 rounded-xl transition ${
                 isActive("/")
                   ? "bg-indigo-600"
