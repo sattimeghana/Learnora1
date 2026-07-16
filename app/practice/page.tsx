@@ -1,60 +1,66 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { questions } from "@/app/data/question";
+import { useState } from "react";
+import { questions, type Question } from "@/app/data/question";
 
-const allQuestions = Object.entries(questions).flatMap(
-  ([topic, list]: any) =>
-    list.map((question: any) => ({
+
+type PracticeQuestion = Question & {
+  topic: string;
+};
+
+const allQuestions: PracticeQuestion[] = Object.entries(questions).flatMap(
+  ([topic, list]) =>
+    (list as Question[]).map((question) => ({
       ...question,
       topic,
     }))
 );
 
 export default function PracticePage() {
-  const [selectedQuestion, setSelectedQuestion] = useState(
-    allQuestions[0]
-  );
+  const [selectedQuestion, setSelectedQuestion] =
+  useState<PracticeQuestion>(allQuestions[0]);
+  
 
   const [openTopic, setOpenTopic] = useState("Basic C Syntax");
 
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(
+    allQuestions[0]?.starterCode ?? ""
+  );
 
   const [output, setOutput] = useState("");
 
   const [result, setResult] = useState("");
 
-  useEffect(() => {
-    setCode(
-      selectedQuestion.starterCode ??
-        `#include <stdio.h>
-
-int main() {
-
-    return 0;
-
-}`
-    );
-  }, [selectedQuestion]);
+  const handleQuestionClick = (question: PracticeQuestion) => {
+    setSelectedQuestion(question);
+    setCode(question.starterCode ?? "");
+    setOutput("");
+    setResult("");
+  };
 
   const runCode = () => {
-    if (code.trim() === "") {
+    if (!code.trim()) {
       setOutput("Write some code first.");
       return;
     }
 
-    setOutput("Program Executed Successfully");
+    setOutput("✅ Program Executed Successfully");
   };
-    const submitCode = () => {
-    setResult(
-      `✅ Submitted Successfully for ${selectedQuestion.title}`
-    );
+
+  const submitCode = () => {
+    if (!code.trim()) {
+      setResult("❌ Please write some code before submitting.");
+      return;
+    }
+
+    setResult(`✅ Submitted Successfully for "${selectedQuestion.title}"`);
   };
 
   return (
     <div className="flex h-screen w-full bg-gray-100">
 
       {/* Sidebar */}
+
       <aside className="w-[320px] bg-white border-r overflow-y-auto flex-shrink-0">
 
         <div className="p-5">
@@ -72,46 +78,49 @@ int main() {
 
               <button
                 onClick={() =>
-                  setOpenTopic(
-                    openTopic === topic ? "" : topic
-                  )
+                  setOpenTopic(openTopic === topic ? "" : topic)
                 }
                 className="w-full flex justify-between items-center py-3 font-semibold text-blue-600 hover:text-blue-800"
               >
-
                 <span>{topic}</span>
 
                 <span>
                   {openTopic === topic ? "⌃" : "⌄"}
                 </span>
-
               </button>
 
               {openTopic === topic && (
 
-  <div className="pb-3 space-y-1">
+                <div className="pb-3 space-y-1">
 
-    {list.map((question) => (
+                  {(list as typeof questions[keyof typeof questions]).map(
+                    (question) => (
 
-      <button
-        key={question.id}
-        onClick={() => setSelectedQuestion(question)}
-        className={`w-full text-left px-3 py-2 rounded-md transition
-        ${
-          selectedQuestion.id === question.id &&
-          selectedQuestion.topic === question.topic
-            ? "bg-blue-600 text-white"
-            : "hover:bg-gray-100 text-gray-700"
-        }`}
-      >
-        {question.title}
-      </button>
+                      <button
+                        key={question.id}
+                        onClick={() =>
+                          handleQuestionClick({
+                            ...question,
+                            topic,
+                          } as PracticeQuestion)
+                        }
+                        className={`w-full text-left px-3 py-2 rounded-md transition
+                        ${
+                          selectedQuestion.id === question.id &&
+                          selectedQuestion.topic === topic
+                            ? "bg-blue-600 text-white"
+                            : "hover:bg-gray-100 text-gray-700"
+                        }`}
+                      >
+                        {question.title}
+                      </button>
 
-    ))}
+                    )
+                  )}
 
-  </div>
+                </div>
 
-)}
+              )}
 
             </div>
 
@@ -121,7 +130,7 @@ int main() {
 
       </aside>
 
-      {/* Editor */}
+      {/* Main */}
 
       <main className="flex-1 bg-slate-900 text-white overflow-y-auto p-6">
 
@@ -146,20 +155,14 @@ int main() {
         </div>
 
         {selectedQuestion.logic && (
+  <div className="mt-5 rounded-lg bg-slate-800 p-4">
+    <h3 className="mb-2 font-semibold">Logic</h3>
 
-          <div className="mt-5 bg-slate-800 rounded-lg p-4">
-
-            <h3 className="font-semibold mb-2">
-              Logic
-            </h3>
-
-            <pre className="text-gray-300 whitespace-pre-wrap text-sm">
-              {selectedQuestion.logic}
-            </pre>
-
-          </div>
-
-        )}
+    <pre className="whitespace-pre-wrap text-sm text-gray-300">
+      {selectedQuestion.logic}
+    </pre>
+  </div>
+)}
 
         <textarea
           value={code}
@@ -210,7 +213,8 @@ int main() {
         </div>
 
       </main>
-            {/* Test Cases */}
+
+      {/* Test Cases */}
 
       <aside className="w-[340px] bg-white border-l overflow-y-auto flex-shrink-0">
 
@@ -220,70 +224,37 @@ int main() {
             Test Cases
           </h2>
 
-          {/* Test Case 1 */}
+          {[0, 1].map((index) => (
 
-          <div className="mb-8">
+            <div key={index} className="mb-8">
 
-            <h3 className="text-lg font-semibold text-blue-600">
-              Test Case 1
-            </h3>
+              <h3 className="text-lg font-semibold text-blue-600">
+                Test Case {index + 1}
+              </h3>
 
-            <p className="mt-3 font-medium">
-              Input
-            </p>
-
-            <pre className="bg-gray-100 rounded-lg p-3 text-sm whitespace-pre-wrap">
-              {selectedQuestion.testCases?.[0]?.input ??
-                selectedQuestion.sampleInput ??
-                "No Sample Input"}
-            </pre>
-
-            <p className="mt-4 font-medium">
-              Expected Output
-            </p>
+              <p className="mt-3 font-medium">
+                Input
+              </p>
 
             <pre className="bg-gray-100 rounded-lg p-3 text-sm whitespace-pre-wrap">
-              {selectedQuestion.testCases?.[0]?.output ??
-                selectedQuestion.sampleOutput ??
-                "No Sample Output"}
-            </pre>
+  {selectedQuestion.testCases?.[index]?.input || "No Sample Input"}
+</pre>
 
-          </div>
+              <p className="mt-4 font-medium">
+                Expected Output
+              </p>
+<pre className="bg-gray-100 rounded-lg p-3 text-sm whitespace-pre-wrap">
+  {selectedQuestion.testCases?.[index]?.output || "No Sample Output"}
+</pre>
 
-          {/* Test Case 2 */}
+            </div>
 
-          <div>
-
-            <h3 className="text-lg font-semibold text-blue-600">
-              Test Case 2
-            </h3>
-
-            <p className="mt-3 font-medium">
-              Input
-            </p>
-
-            <pre className="bg-gray-100 rounded-lg p-3 text-sm whitespace-pre-wrap">
-              {selectedQuestion.testCases?.[1]?.input ??
-                "No Sample Input"}
-            </pre>
-
-            <p className="mt-4 font-medium">
-              Expected Output
-            </p>
-
-            <pre className="bg-gray-100 rounded-lg p-3 text-sm whitespace-pre-wrap">
-              {selectedQuestion.testCases?.[1]?.output ??
-                "No Sample Output"}
-            </pre>
-
-          </div>
+          ))}
 
         </div>
 
       </aside>
 
     </div>
-
   );
-
 }

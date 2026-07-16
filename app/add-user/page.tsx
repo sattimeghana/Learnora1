@@ -94,6 +94,7 @@ export default function AddUserPage() {
           </button>
         </form>
       </div>
+      </main>
     </>
   );
 }

@@ -23,7 +23,7 @@ export default function Sidebar() {
 
       {/* Logo */}
       <h1 className="text-3xl font-bold mb-8">
-        CSP Learning Hub
+      Learnora
       </h1>
 
       {/* Button */}

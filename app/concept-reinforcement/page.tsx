@@ -261,7 +261,7 @@ export default function ConceptsPage() {
 },
   ];
 
-  const colors: any = {
+  const colors: Record<string, string> = {
   blue: "bg-blue-50 text-blue-600 border-blue-200",
   green: "bg-green-50 text-green-600 border-green-200",
   orange: "bg-orange-50 text-orange-600 border-orange-200",
@@ -269,7 +269,6 @@ export default function ConceptsPage() {
   pink: "bg-pink-50 text-pink-600 border-pink-200",
   cyan: "bg-cyan-50 text-cyan-600 border-cyan-200",
 };
-
 const filteredConcepts = concepts.filter((concept) =>
   concept.title.toLowerCase().includes(search.toLowerCase())
 );
@@ -283,12 +282,13 @@ return (
       {/* Top Navbar (same as Dashboard) */}
       <div className="flex justify-between items-center p-8">
 
-        <input
-          type="text"
-          placeholder="Search topics, lectures, notes..."
-          className="border rounded-lg px-4 py-2 w-96 bg-white"
-        />
-
+       <input
+  type="text"
+  placeholder="Search topics, lectures, notes..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  className="border rounded-lg px-4 py-2 w-96 bg-white"
+/>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center">
             M
@@ -361,7 +361,9 @@ return (
             >
 
               <div
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center ${colors[item.color]}`}
+              className={`px-4 py-2 rounded-xl text-sm border hover:scale-105 transition ${
+  colors[item.color] || colors.blue
+}`}
               >
                 {item.icon}
               </div>
