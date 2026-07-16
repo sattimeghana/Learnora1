@@ -93,7 +93,8 @@ useEffect(() => {
             Welcome Back👋
           </h1>
 
-          <p className="text-gray-500 mt-2 mb-8">
+          <p className="text-blue
+          -500 mt-2 mb-8">
             Lets continue your learning journey.
           </p>
 
@@ -103,22 +104,22 @@ useEffect(() => {
 
             <div className="bg-white rounded-xl shadow p-6">
               <h2 className="text-3xl font-bold">🔥 {topUser.streak}</h2>
-              <p className="text-gray-500">Day Streak</p>
+              <p className="text-blue-500">Day Streak</p>
             </div>
 
             <div className="bg-white rounded-xl shadow p-6">
               <h2 className="text-3xl font-bold">🏆 {topUser.points}</h2>
-              <p className="text-gray-500">Total Points</p>
+              <p className="text-blue-500">Total Points</p>
             </div>
 
             <div className="bg-white rounded-xl shadow p-6">
               <h2 className="text-3xl font-bold">📚 12</h2>
-              <p className="text-gray-500">Quizzes Completed</p>
+              <p className="text-blue-500">Quizzes Completed</p>
             </div>
 
             <div className="bg-white rounded-xl shadow p-6">
               <h2 className="text-3xl font-bold">📈 65%</h2>
-              <p className="text-gray-500">Overall Progress</p>
+              <p className="text-blue-500">Overall Progress</p>
             </div>
 
           </div>
@@ -137,11 +138,11 @@ useEffect(() => {
                 C Programming
               </h3>
 
-              <p className="text-gray-500">
+              <p className="text-blue-500">
                 Loops in C
               </p>
 
-              <div className="w-full h-3 rounded-full bg-gray-200 mt-4">
+              <div className="w-full h-3 rounded-full bg-blue-200 mt-4">
                 <div className="w-[65%] h-3 bg-blue-500 rounded-full"></div>
               </div>
 
@@ -159,7 +160,7 @@ useEffect(() => {
 
               <p>Complete 2 Lessons</p>
 
-              <div className="w-full h-3 rounded-full bg-gray-200 mt-3">
+              <div className="w-full h-3 rounded-full bg-blue-200 mt-3">
                 <div className="w-full h-3 bg-purple-500 rounded-full"></div>
               </div>
 
@@ -167,7 +168,7 @@ useEffect(() => {
                 Solve 3 Coding Problems
               </p>
 
-              <div className="w-full h-3 rounded-full bg-gray-200 mt-3">
+              <div className="w-full h-3 rounded-full bg-blue-200 mt-3">
                 <div className="w-full h-3 bg-green-500 rounded-full"></div>
               </div>
 
@@ -190,11 +191,11 @@ useEffect(() => {
                   C Programming
                 </h3>
 
-                <p className="text-gray-500 mt-2">
+                <p className="text-blue-500 mt-2">
                   Master C Programming from basics.
                 </p>
 
-                <div className="w-full h-3 rounded-full bg-gray-200 mt-5">
+                <div className="w-full h-3 rounded-full bg-blue-200 mt-5">
                   <div className="w-[65%] h-3 bg-blue-500 rounded-full"></div>
                 </div>
 
@@ -206,11 +207,11 @@ useEffect(() => {
                   Data Structures
                 </h3>
 
-                <p className="text-gray-500 mt-2">
+                <p className="text-blue-500 mt-2">
                   Practice DSA with coding questions.
                 </p>
 
-                <div className="w-full h-3 rounded-full bg-gray-200 mt-5">
+                <div className="w-full h-3 rounded-full bg-blue-200 mt-5">
                   <div className="w-[40%] h-3 bg-green-500 rounded-full"></div>
                 </div>
 
@@ -222,11 +223,11 @@ useEffect(() => {
                   ADS
                 </h3>
 
-                <p className="text-gray-500 mt-2">
+                <p className="text-blue-500 mt-2">
                   Algorithm Design & Analysis.
                 </p>
 
-                <div className="w-full h-3 rounded-full bg-gray-200 mt-5">
+                <div className="w-full h-3 rounded-full bg-blue-200 mt-5">
                   <div className="w-[25%] h-3 bg-purple-500 rounded-full"></div>
                 </div>
 
