@@ -93,8 +93,7 @@ useEffect(() => {
             Welcome Back👋
           </h1>
 
-          <p className="text-blue
-          -500 mt-2 mb-8">
+          <p className="text-blue-500 mt-2 mb-8">
             Lets continue your learning journey.
           </p>
 
@@ -103,8 +102,12 @@ useEffect(() => {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
 
             <div className="bg-white rounded-xl shadow p-6">
-              <h2 className="text-3xl font-bold">🔥 {topUser.streak}</h2>
-              <p className="text-blue-500">Day Streak</p>
+              <h2 className="text-3xl font-extrabold text-gray-900">
+  🔥 {topUser.streak}
+</h2>
+<p className="text-gray-700 font-medium">
+  Day Streak
+</p>
             </div>
 
             <div className="bg-white rounded-xl shadow p-6">
